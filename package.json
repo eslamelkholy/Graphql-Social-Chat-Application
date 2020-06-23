@@ -1,0 +1,19 @@
+{
+  "name": "socialApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.15.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "graphql": "^15.1.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.4",
+    "supervisor": "^0.12.0"
+  }
+}
