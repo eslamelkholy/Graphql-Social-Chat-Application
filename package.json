@@ -11,7 +11,8 @@
     "apollo-server-express": "^2.15.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "graphql": "^15.1.0"
+    "graphql": "^15.1.0",
+    "mongoose": "^5.9.20"
   },
   "devDependencies": {
     "standard": "^14.3.4",
