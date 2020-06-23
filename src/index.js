@@ -4,11 +4,11 @@ import typeDefs from './typeDefs'
 import resolvers from './resolvers'
 
 const {
-  APP_PORT = 4000,
+  APP_PORT = 8000,
   NODE_ENV = 'development'
 } = process.env
 
-const IN_PROD = NODE_ENV !== 'production'
+const IN_PROD = NODE_ENV === 'production'
 
 const app = express()
 app.disable('x-powered-by')
