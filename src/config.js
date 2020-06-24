@@ -12,9 +12,9 @@ export const {
   SESSION_SECRET = 'eslams_sh_secrect',
   SESSION_LIFETIME = 1000 * 60 * 60 * 2,
 
-  REDIS_HOTS = 'redis-17503.c8.us-east-1-4.ec2.cloud.redislabs.com:17503',
-  REDIS_PORT = 6379,
-  REDIS_PASSWORD = 'secret'
+  REDIS_HOTS = 'redis-17503.c8.us-east-1-4.ec2.cloud.redislabs.com',
+  REDIS_PORT = 17503,
+  REDIS_PASSWORD = 'OIBw3exqJOar8DorC4gt92qbn2w4oNbe'
 
 } = process.env
 

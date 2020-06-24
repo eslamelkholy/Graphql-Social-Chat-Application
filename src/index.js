@@ -24,7 +24,8 @@ import {
     const store = new RedisStore({
       host: REDIS_HOTS,
       port: REDIS_PORT,
-      pass: REDIS_PASSWORD
+      pass: REDIS_PASSWORD,
+      client: RedisStore
     })
     app.use(session({
       store,
