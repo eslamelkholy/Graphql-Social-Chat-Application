@@ -16,5 +16,6 @@ export default gql`
         username: String!
         name: String!
         createdAt: String!
+        updatedAt: String!
     }
 `
