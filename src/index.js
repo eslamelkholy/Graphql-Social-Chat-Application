@@ -41,7 +41,8 @@ import {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
-      playground: !IN_PROD
+      playground: !IN_PROD,
+      context: ({ req, res }) => ({ req, res })
     })
     server.applyMiddleware({ app })
     app.listen({ port: APP_PORT }, () =>
