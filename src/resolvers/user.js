@@ -29,7 +29,10 @@ export default {
     signUp: async (root, args, { req }, info) => {
       Auth.checkedSignedOut(req)
       await Joi.validate(args, signUp, { abortEarly: false })
-      return User.create(args)
+
+      const user = await User.create(args)
+      req.session.userId = user.id
+      return user
     },
 
     signIn: async (root, args, { req }, info) => {
@@ -37,8 +40,10 @@ export default {
       if (userId) {
         return await User.findById(userId)
       }
+
       await Joi.validate(args, signIn, { abortEarly: false })
       const { email, password } = args
+
       const user = Auth.attempSignIn(email, password)
       req.session.userId = user.id
       return user

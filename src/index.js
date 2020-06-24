@@ -1,6 +1,7 @@
 import express from 'express'
 import session from 'express-session'
 import { ApolloServer } from 'apollo-server-express'
+import redis from 'redis'
 import connectRedis from 'connect-redis'
 import mongoose from 'mongoose'
 import typeDefs from './typeDefs'
@@ -21,11 +22,10 @@ import {
     const app = express()
     app.disable('x-powered-by')
     const RedisStore = connectRedis(session)
+    const client = redis.createClient(REDIS_PORT, REDIS_HOTS)
+    client.auth(REDIS_PASSWORD)
     const store = new RedisStore({
-      host: REDIS_HOTS,
-      port: REDIS_PORT,
-      pass: REDIS_PASSWORD,
-      client: RedisStore
+      client
     })
     app.use(session({
       store,
@@ -42,7 +42,11 @@ import {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
-      playground: !IN_PROD,
+      playground: IN_PROD ? false : {
+        settings: {
+          'request.credentials': 'include'
+        }
+      },
       context: ({ req, res }) => ({ req, res })
     })
     server.applyMiddleware({ app })
