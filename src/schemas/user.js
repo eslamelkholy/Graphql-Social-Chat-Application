@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-const passwordRegexErrorMessage = 'Password must be 8 Character at least and one Uppercase, one Lowercase, one digit and one Special Characters'
+const passwordRegexErrorMessage = 'Password must be between 8-30 Character at least and one Uppercase, one Lowercase, one digit and one Special Characters'
 export default Joi.object().keys({
   email: Joi.string().email().required().label('Email'),
   username: Joi.string().alphanum().min(4).max(30).required().label('Username'),
