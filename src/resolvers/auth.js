@@ -4,13 +4,13 @@ import { SESSION_NAME } from '../config'
 
 const signedIn = req => req.session.userId
 
-export const checkSignedIn = req => {
+export const ensureSignedIn = req => {
   if (!signedIn(req)) {
     throw new AuthenticationError('You must be Signed in ')
   }
 }
 
-export const checkedSignedOut = req => {
+export const ensureSignedOut = req => {
   if (signedIn(req)) {
     throw new AuthenticationError('You Already Signed in. ')
   }

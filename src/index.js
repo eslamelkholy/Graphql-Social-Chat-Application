@@ -6,6 +6,7 @@ import connectRedis from 'connect-redis'
 import mongoose from 'mongoose'
 import typeDefs from './typeDefs'
 import resolvers from './resolvers'
+import schemaDirectives from './directives'
 import {
   IN_PROD, APP_PORT,
   DB_NAME, DB_PORT,
@@ -34,7 +35,7 @@ import {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: SESSION_LIFETIME,
+        maxAge: parseInt(SESSION_LIFETIME),
         sameSite: true,
         secure: IN_PROD
       }
@@ -42,6 +43,7 @@ import {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
+      schemaDirectives,
       playground: IN_PROD ? false : {
         settings: {
           'request.credentials': 'include'
@@ -49,7 +51,7 @@ import {
       },
       context: ({ req, res }) => ({ req, res })
     })
-    server.applyMiddleware({ app })
+    server.applyMiddleware({ app, cors: false })
     app.listen({ port: APP_PORT }, () =>
       console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
     )
