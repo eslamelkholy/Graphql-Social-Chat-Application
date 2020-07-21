@@ -15,10 +15,7 @@ export default {
       return User.find({})
     },
     user: (root, { id }, { req }, info) => {
-      // TODO:Projection, Sanitization
-      if (!mongoose.Types.ObjectId.isValid(id)) {
-        throw new UserInputError(`${id} is not a valid user id`)
-      }
+      if (!mongoose.Types.ObjectId.isValid(id)) throw new UserInputError('User ID is not a valid user id')
       return User.findById(id)
     }
   },
