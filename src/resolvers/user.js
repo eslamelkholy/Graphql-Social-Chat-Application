@@ -39,6 +39,5 @@ export default {
     signOut: (root, args, { req, res }, info) => {
       return signOut(req, res)
     }
-
   }
 }
