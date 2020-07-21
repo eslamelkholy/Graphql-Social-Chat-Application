@@ -19,9 +19,7 @@ export const ensureSignedOut = req => {
 export const attempSignIn = async (email, password) => {
   const loginErrorMesssage = 'Incorrect Email Or Password please Try Again'
   const user = await User.findOne({ email })
-  if (!user || !await user.matchesPassword(password)) {
-    throw new AuthenticationError(loginErrorMesssage)
-  }
+  if (!user || !await user.matchesPassword(password)) throw new AuthenticationError(loginErrorMesssage)
   return user
 }
 

@@ -4,6 +4,7 @@ import { ApolloServer } from 'apollo-server-express'
 import redis from 'redis'
 import connectRedis from 'connect-redis'
 import mongoose from 'mongoose'
+// TypeDefs & Resolvers and SchemaDirectives
 import typeDefs from './typeDefs'
 import resolvers from './resolvers'
 import schemaDirectives from './directives'
@@ -32,7 +33,8 @@ import {
       store,
       name: SESSION_NAME,
       secret: SESSION_SECRET,
-      resave: false,
+      resave: true,
+      rolling: true,
       saveUninitialized: false,
       cookie: {
         maxAge: parseInt(SESSION_LIFETIME),
